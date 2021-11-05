@@ -23,7 +23,7 @@ def createProject(request):
     form = ProjectForm()
 
     if request.method=="POST":
-        form = ProjectForm(request.POST) # Creates a new form object
+        form = ProjectForm(request.POST, request.FILES) # Creates a new form object # request.FILES for processing files in backend
         if form.is_valid(): # check if all fields match or not
             form.save() # Form gets saved
             return redirect('projects') # User is redirected to main projects page.
@@ -35,7 +35,7 @@ def updateProject(request,pk):
     form = ProjectForm(instance=project) # get the object of the ProjectForm instance and store it in form.
 
     if request.method == "POST":
-        form = ProjectForm(request.POST,instance=project) # get the object of that instance.
+        form = ProjectForm(request.POST,request.FILES,instance=project) # get the object of that instance.
         if form.is_valid():
             form.save()
             return redirect('projects')
