@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Project
+from django.contrib.auth.decorators import login_required
 # This is where we will create business logic.
 # 'projects/projects.html' means that django will find templates folder in projects folder to get html files.
 # Create your views here.
@@ -19,6 +20,7 @@ def project(request,pk):
     tags = projectObj.tags.all()
     return render(request, 'projects/single-project.html',{'project':projectObj})
 
+@login_required(login_url="login")
 def createProject(request):
     form = ProjectForm()
 
@@ -30,6 +32,7 @@ def createProject(request):
     context = {'form':form}
     return render(request,"projects/project_form.html",context=context)
 
+@login_required(login_url="login")
 def updateProject(request,pk):
     project = Project.objects.get(id=pk) # get the project with the id of the primary key requested
     form = ProjectForm(instance=project) # get the object of the ProjectForm instance and store it in form.
@@ -42,6 +45,7 @@ def updateProject(request,pk):
     context = {'form':form}
     return render(request,"projects/project_form.html",context=context)
 
+@login_required(login_url="login")
 def deleteProject(request,pk):
     project = Project.objects.get(id=pk)
     if request.method=='POST':
