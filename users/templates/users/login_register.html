@@ -65,7 +65,7 @@
                     <p>Hello Developer, Welcome Back!</p>
                 </div>
 
-                <form action="{% url 'login' %}" method="POST" class="form auth__form">
+                <form action="" method="POST" class="form auth__form">
                     {% csrf_token %}
                     <!-- Input:Username -->
                     <div class="form__field">
@@ -78,7 +78,7 @@
                     <div class="form__field">
                         <label for="formInput#password">Password: </label>
                         <input class="input input--password" id="formInput#passowrd" type="password" name="password"
-                               placeholder="••••••••" />
+                               placeholder="••••••••"/>
                     </div>
                     <div class="auth__actions">
                         <input class="btn btn--sub btn--lg" type="submit" value="Log In"/>
